@@ -80,7 +80,16 @@
             transform: scale(1.05);
         }
 
-        /* Updated Output Box with Smooth Transition */
+        /* 🔹 Output Box with Smooth Transitions */
+        #output-container {
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
         #output {
             background: linear-gradient(145deg, #8bc1ec, #76a9d9);
             color: black;
@@ -88,14 +97,14 @@
             font-size: 18px;
             border-radius: 20px;
             text-align: center;
-            min-height: 50px;
+            min-height: 50px; /* Keeps space reserved even when collapsed */
             max-width: 100%;
             word-wrap: break-word;
             overflow-wrap: anywhere;
             white-space: normal;
             overflow: auto;
             box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
-            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
             max-height: 200px;
         }
 
@@ -105,10 +114,10 @@
             padding: 0;
         }
 
-        /* Expand/Collapse Button */
+        /* 🔹 Expand/Collapse Button */
         #toggleOutput {
+            margin-top: 10px;
             font-family: "OpenDyslexic";
-            margin: 10px 0;
             padding: 8px 15px;
             font-size: 13px;
             font-weight: bold;
@@ -136,11 +145,11 @@
     </div>
 
     <button onclick="clearText()">Clear</button>
-    
-    <div id="output">Your text will appear here</div>
 
-    <!-- Expand/Collapse Output Button -->
-    <button id="toggleOutput">Expand Output</button>
+    <div id="output-container">
+        <div id="output">Your text will appear here</div>
+        <button id="toggleOutput">Expand Output</button>
+    </div>
 
     <script>
         // Update output text on input
@@ -163,7 +172,7 @@
         // Toggle Expand/Collapse Output Box
         document.getElementById("toggleOutput").addEventListener("click", function() {
             const outputBox = document.getElementById("output");
-            
+
             if (outputBox.classList.contains("hidden")) {
                 outputBox.classList.remove("hidden");
                 this.textContent = "Collapse Output";
