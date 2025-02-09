@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Upload & Extract</title>
+    <title>Upload & Extract Text</title>
 
     <!-- Load Tesseract.js for OCR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.0.2/tesseract.min.js"></script>
 
     <style>
+        @font-face {
+            font-family: "OpenDyslexic";
+            src: url("./fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+                 url("./fonts/OpenDyslexic-Regular.woff") format("woff"),
+                 url("./fonts/OpenDyslexic-Regular.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
             font-family: "OpenDyslexic", Arial, sans-serif;
             display: flex;
@@ -19,6 +28,12 @@
             margin: 0;
             padding: 10px;
             background-color: #2e3440;
+        }
+
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         input {
@@ -47,15 +62,35 @@
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05);
             transform: scale(1.05);
         }
+
+        /* 🔹 Output Box for Extracted Text */
+        #output {
+            background: linear-gradient(145deg, #8bc1ec, #76a9d9); /* Light blue gradient */
+            color: black; /* Black text for better readability */
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 20px; /* Smoothly rounded corners */
+            text-align: center;
+            min-height: 50px;
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            overflow: auto;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+        }
     </style>
 </head>
 <body>
 
     <h1>Upload & Extract Text</h1>
+
+    <!-- File Input -->
     <input type="file" id="imageUpload" accept="image/*">
     <button onclick="extractText()">Extract Text from Image</button>
     <button onclick="window.location.href='index.html'">Go Back</button>
 
+    <!-- Output Box -->
     <div id="output">Extracted text will appear here</div>
 
     <script>
@@ -73,7 +108,7 @@
 
                 Tesseract.recognize(imageSrc, 'eng', { logger: m => console.log(m) })
                     .then(({ data: { text } }) => {
-                        document.getElementById("output").textContent = text;
+                        document.getElementById("output").textContent = text; // Display extracted text
                     })
                     .catch(err => {
                         console.error("Error extracting text:", err);
