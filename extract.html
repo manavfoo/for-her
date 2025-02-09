@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Upload & Extract</title>
+
+    <!-- Load Tesseract.js for OCR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.0.2/tesseract.min.js"></script>
+
+    <style>
+        body {
+            font-family: "OpenDyslexic", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+            background-color: #2e3440;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+            font-family: "OpenDyslexic";
+        }
+
+        button {
+            font-family: "OpenDyslexic";
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(145deg, #28374e, #1f2b3a);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #1f2b3a, #28374e);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload & Extract Text</h1>
+    <input type="file" id="imageUpload" accept="image/*">
+    <button onclick="extractText()">Extract Text from Image</button>
+    <button onclick="window.location.href='index.html'">Go Back</button>
+
+    <div id="output">Extracted text will appear here</div>
+
+    <script>
+        function extractText() {
+            const imageInput = document.getElementById("imageUpload").files[0];
+
+            if (!imageInput) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageSrc = event.target.result;
+
+                Tesseract.recognize(imageSrc, 'eng', { logger: m => console.log(m) })
+                    .then(({ data: { text } }) => {
+                        document.getElementById("output").textContent = text;
+                    })
+                    .catch(err => {
+                        console.error("Error extracting text:", err);
+                        alert("Failed to extract text from image.");
+                    });
+            };
+
+            reader.readAsDataURL(imageInput);
+        }
+    </script>
+
+</body>
+</html>
