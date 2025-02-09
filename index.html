@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=OpenDyslexic:wght@400&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Text Display</title>
+    <style>
+        body {
+            font-family: "OpenDyslexic", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center all elements horizontally */
+            justify-content: center; /* Center elements vertically */
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+            background-color: #2e3440;
+        }
+
+        #inputArea {
+            width: 90%; /* Same width as button and output */
+            max-width: 400px; /* Consistent max-width */
+            text-align: center; /* Ensure alignment */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center textarea horizontally */
+        }
+
+        textarea {
+            width: 100%; /* Full width relative to #inputArea */
+            height: 50px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: "OpenDyslexic", Arial, sans-serif;
+            border: none;
+            border-radius: 20px; /* Smoothly rounded corners */
+            resize: none;
+            overflow: hidden;
+            background: linear-gradient(145deg, #3b4252, #434c5e); /* Subtle gradient */
+            color: white; /* White text for readability */
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+            outline: none; /* Remove the default blue outline when focused */
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add smooth effects */
+        }
+
+        textarea:focus {
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.15); /* Highlighted shadow */
+            transform: scale(1.02); /* Slight enlargement on focus */
+        }
+
+        button {
+            font-family: "OpenDyslexic";
+            margin: 10px 0; /* Add equal spacing above and below */
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(145deg, #28374e, #1f2b3a); /* Darker gradient */
+            border: none;
+            border-radius: 30px; /* Fully rounded corners */
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05); /* Elevated effect */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Smooth hover effect */
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #1f2b3a, #28374e); /* Reverse gradient */
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05); /* Softer shadow */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        #output {
+            background: linear-gradient(145deg, #8bc1ec, #76a9d9); /* Subtle gradient */
+            color: black;
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 20px; /* Smoothly rounded corners */
+            text-align: center;
+            min-height: 50px;
+            max-width: 100%; /* Ensure it doesn't exceed container width */
+            word-wrap: break-word; /* Break long unbroken words */
+            overflow-wrap: anywhere; /* Break long strings and ensure compatibility */
+            white-space: normal; /* Ensure text wraps normally */
+            overflow: auto; /* Allow scrolling for excessive content */
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="inputArea">
+        <textarea id="textInput" placeholder="Enter your text..."></textarea>
+    </div>
+
+    <button onclick="clearText()">Clear</button>
+    
+    <div id="output">Your text will appear here</div>
+    <script>
+        document.getElementById("textInput").addEventListener("input", function() {
+            document.getElementById("output").textContent = this.value;
+        });
+
+        function clearText() {
+            const textInput = document.getElementById("textInput"); // Select the textarea
+            const output = document.getElementById("output");       // Select the output div
+
+            textInput.value = "";                                   // Clear the textarea content
+            output.textContent = "Your text will appear here";      // Reset the output text
+        }
+    </script>
+
+</body>
+</html>
