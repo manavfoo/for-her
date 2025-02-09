@@ -78,10 +78,20 @@
             display: flex;
         }
 
-        h1 {
+        header {
+            text-align: center; /* Centers the text in the header */
             color: white;
-            font-size: 24px;
             margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 16px;
+            margin: 10px 0 20px;
         }
 
         #inputArea {
@@ -153,6 +163,16 @@
             overflow: auto;
             box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
         }
+
+        .with-icon {
+            display: inline-block;
+            background-image: url('./images/heart.png');
+            background-size: 36px 36px;
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-right: 34px; /* Add space for the icon */
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -170,7 +190,8 @@
     </div>
 
     <header>
-        <h1>For my Felicity</h1>
+        <h1>For my Felicity</h1> 
+        <p class="with-icon">I hope this helps you in some way</p>
     </header>
 
     <div id="inputArea">
