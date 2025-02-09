@@ -175,6 +175,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Burger Menu -->
@@ -253,6 +254,15 @@
             pdf.text(textLines, marginLeft, marginTop);
             pdf.save("text_output.pdf");
         }
+    </script>
+
+    <script>
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML("beforeend", data);
+            })
+            .catch(error => console.error("Error loading footer:", error));
     </script>
 
 </body>
