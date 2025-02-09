@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Helpful Words <3</title>
+
+    <style>
+        @font-face {
+            font-family: "OpenDyslexic";
+            src: url("./fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+                 url("./fonts/OpenDyslexic-Regular.woff") format("woff"),
+                 url("./fonts/OpenDyslexic-Regular.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: "OpenDyslexic", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #2e3440; /* General background color */
+        }
+
+        /* Quote Box Styling */
+        .quote-box {
+            background-color: white;
+            color: #2e3440; /* Dark blue text color matching the background */
+            font-size: 20px;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.1);
+            max-width: 90%;
+            text-align: center;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Author Text Styling */
+        .author {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Regenerate Button */
+        button {
+            margin-top: 20px;
+            font-family: "OpenDyslexic";
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            color: white;
+            background: linear-gradient(145deg, #28374e, #1f2b3a);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05);
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #1f2b3a, #28374e);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Quote Box -->
+    <div class="quote-box" id="quoteBox">
+        Loading quote...
+    </div>
+
+    <!-- Button to Regenerate Quote -->
+    <button onclick="generateQuote()">Regenerate Quote</button>
+
+    <script>
+        // Fetch the quotes from the JSON file
+        async function fetchQuotes() {
+            const response = await fetch('./lds-quotes.json');
+            const quotes = await response.json();
+            return quotes;
+        }
+
+        // Generate and Display a Random Quote
+        async function generateQuote() {
+            const quotes = await fetchQuotes();
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+            // Get the quote and author
+            const quoteText = randomQuote.quote;
+            const authorText = randomQuote.author;
+
+            // Update the Quote Box
+            document.getElementById('quoteBox').innerHTML = `
+                <div>${quoteText}</div>
+                <div class="author">- ${authorText}</div>
+            `;
+        }
+
+        // Auto-Change Quote Every Hour
+        setInterval(() => {
+            generateQuote();
+        }, 3600000); // 3600000ms = 1 hour
+
+        // Generate a Quote on Page Load
+        generateQuote();
+    </script>
+
+</body>
+</html>
