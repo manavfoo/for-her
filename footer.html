@@ -4,22 +4,33 @@
 <style>
     footer {
         text-align: center;
-        padding: 10px;
-        background-color: #3b4252;
-        color: white;
-        font-size: 14px;
+        padding: 5px 10px; /* Less padding for a smaller height */
+        background-color: #3b4252; /* Darker shade to blend in */
+        color: rgba(255, 255, 255, 0.6); /* Lighter text to make it less prominent */
+        font-size: 12px; /* Smaller text size */
         position: fixed;
         width: 100%;
         bottom: 0;
         left: 0;
+        box-shadow: none; /* Remove shadow to make it lowkey */
     }
 
     footer a {
-        color: #8bc1ec;
+        color: rgba(255, 255, 255, 0.6); /* Less prominent link */
         text-decoration: none;
+        font-weight: normal;
     }
 
     footer a:hover {
         text-decoration: underline;
+        color: #8bc1ec; /* A slight highlight when hovered */
+    }
+
+    /* Make it even more subtle on mobile */
+    @media (max-width: 600px) {
+        footer {
+            font-size: 10px;
+            padding: 4px 8px;
+        }
     }
 </style>
