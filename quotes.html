@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Helpful Words <3</title>
+    <title>Inspirational Quote</title>
 
     <style>
         @font-face {
@@ -20,25 +20,54 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             margin: 0;
-            padding: 20px;
-            background-color: #2e3440; /* General background color */
+            padding: 10px;
+            background-color: #2e3440;
+        }
+
+        /* Title and Images Section */
+        header {
+            text-align: center;
+            margin-top: 20px; /* Adjust space at the top */
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Quote Box Styling */
         .quote-box {
             background-color: white;
             color: #2e3440; /* Dark blue text color matching the background */
-            font-size: 20px;
-            padding: 20px 30px;
+            font-size: 18px;
+            padding: 20px 20px;
             border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.1);
             max-width: 90%;
             text-align: center;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            margin-top: 10px; /* Space below header and above button */
         }
 
         /* Author Text Styling */
@@ -53,7 +82,7 @@
         button {
             margin-top: 20px;
             font-family: "OpenDyslexic";
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             padding: 10px 20px;
             color: white;
@@ -69,9 +98,40 @@
             background: linear-gradient(145deg, #1f2b3a, #28374e);
             transform: scale(1.05);
         }
+
+        /* Make Everything More Compact for Mobile */
+        @media (max-width: 600px) {
+            .quote-box {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .image-container img {
+                width: 30px;
+                height: 30px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Title Section -->
+    <header>
+        <h1>Your Daily Inspiration</h1>
+        <div class="image-container">
+            <img src="./images/heart-icon.png" alt="Heart Icon">
+            <img src="./images/sun-icon.png" alt="Sun Icon">
+        </div>
+    </header>
 
     <!-- Quote Box -->
     <div class="quote-box" id="quoteBox">
