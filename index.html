@@ -30,6 +30,54 @@
             background-color: #2e3440;
         }
 
+        /* Burger Menu Styles */
+        .burger-menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .burger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .menu {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: #3b4252;
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-family: "OpenDyslexic", Arial, sans-serif;
+            padding: 8px 0;
+            width: 100%;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            color: #8bc1ec;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
         #inputArea {
             width: 90%;
             max-width: 400px;
@@ -103,6 +151,18 @@
 </head>
 <body>
 
+    <!-- Burger Menu -->
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="extract.html">Extract Text</a>
+    </div>
+
     <div id="inputArea">
         <textarea id="textInput" placeholder="Enter your text..."></textarea>
     </div>
@@ -114,6 +174,12 @@
 
     <script>
         const { jsPDF } = window.jspdf;
+
+        // Toggle the burger menu
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
 
         // Add OpenDyslexic font to jsPDF
         function addFontToPDF(pdf) {
@@ -130,11 +196,8 @@
         function clearText() {
             const confirmation = confirm("Are you sure you want to clear the text?");
             if (confirmation) {
-                const textInput = document.getElementById("textInput");
-                const output = document.getElementById("output");
-
-                textInput.value = "";
-                output.textContent = "Your text will appear here";
+                document.getElementById("textInput").value = "";
+                document.getElementById("output").textContent = "Your text will appear here";
             }
         }
 
