@@ -28,73 +28,105 @@
         }
 
         #inputArea {
-            width: 90%; /* Same width as button and output */
-            max-width: 400px; /* Consistent max-width */
-            text-align: center; /* Ensure alignment */
-            display: flex; /* Use flexbox for centering */
-            justify-content: center; /* Center textarea horizontally */
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
         }
 
         textarea {
-            width: 100%; /* Full width relative to the container */
-            height: 50px; /* Fixed height */
-            max-height: 200px; /* Optional: Limit the maximum height */
+            width: 100%;
+            height: 50px;
+            max-height: 200px;
             padding: 10px;
             font-size: 16px;
             font-family: "OpenDyslexic", Arial, sans-serif;
             border: none;
-            border-radius: 20px; /* Smoothly rounded corners */
-            resize: none; /* Disable manual resizing */
-            overflow-y: auto; /* Enable vertical scrolling */
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background: linear-gradient(145deg, #3b4252, #434c5e); /* Subtle gradient */
-            color: white; /* White text for readability */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
-            outline: none; /* Remove the default blue outline when focused */
-            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add smooth effects */
+            border-radius: 20px;
+            resize: none;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: linear-gradient(145deg, #3b4252, #434c5e);
+            color: white;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
+            outline: none;
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
 
         textarea:focus {
-            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.15); /* Highlighted shadow */
-            transform: scale(1.02); /* Slight enlargement on focus */
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
         }
 
         button {
             font-family: "OpenDyslexic";
-            margin: 10px 0; /* Add equal spacing above and below */
+            margin: 10px 0;
             padding: 10px 20px;
             font-size: 13px;
             font-weight: bold;
             color: white;
-            background: linear-gradient(145deg, #28374e, #1f2b3a); /* Darker gradient */
+            background: linear-gradient(145deg, #28374e, #1f2b3a);
             border: none;
-            border-radius: 30px; /* Fully rounded corners */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05); /* Elevated effect */
+            border-radius: 30px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05);
             cursor: pointer;
-            transition: all 0.3s ease-in-out; /* Smooth hover effect */
+            transition: all 0.3s ease-in-out;
         }
 
         button:hover {
-            background: linear-gradient(145deg, #1f2b3a, #28374e); /* Reverse gradient */
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05); /* Softer shadow */
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            background: linear-gradient(145deg, #1f2b3a, #28374e);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
         }
 
+        /* Updated Output Box with Smooth Transition */
         #output {
-            background: linear-gradient(145deg, #8bc1ec, #76a9d9); /* Subtle gradient */
+            background: linear-gradient(145deg, #8bc1ec, #76a9d9);
             color: black;
             padding: 20px;
             font-size: 18px;
-            border-radius: 20px; /* Smoothly rounded corners */
+            border-radius: 20px;
             text-align: center;
             min-height: 50px;
-            max-width: 100%; /* Ensure it doesn't exceed container width */
-            word-wrap: break-word; /* Break long unbroken words */
-            overflow-wrap: anywhere; /* Break long strings and ensure compatibility */
-            white-space: normal; /* Ensure text wraps normally */
-            overflow: auto; /* Allow scrolling for excessive content */
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+            max-width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            overflow: auto;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 200px;
         }
+
+        .hidden {
+            max-height: 0;
+            opacity: 0;
+            padding: 0;
+        }
+
+        /* Expand/Collapse Button */
+        #toggleOutput {
+            font-family: "OpenDyslexic";
+            margin: 10px 0;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(145deg, #1f2b3a, #28374e);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #toggleOutput:hover {
+            background: linear-gradient(145deg, #28374e, #1f2b3a);
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), -2px -2px 6px rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 <body>
@@ -106,11 +138,17 @@
     <button onclick="clearText()">Clear</button>
     
     <div id="output">Your text will appear here</div>
+
+    <!-- Expand/Collapse Output Button -->
+    <button id="toggleOutput">Expand Output</button>
+
     <script>
+        // Update output text on input
         document.getElementById("textInput").addEventListener("input", function() {
             document.getElementById("output").textContent = this.value;
         });
 
+        // Clear text with confirmation
         function clearText() {
             const confirmation = confirm("Are you sure you want to clear the text?");
             if (confirmation) {
@@ -121,6 +159,20 @@
                 output.textContent = "Your text will appear here";      // Reset the output text
             }
         }
+
+        // Toggle Expand/Collapse Output Box
+        document.getElementById("toggleOutput").addEventListener("click", function() {
+            const outputBox = document.getElementById("output");
+            
+            if (outputBox.classList.contains("hidden")) {
+                outputBox.classList.remove("hidden");
+                this.textContent = "Collapse Output";
+            } else {
+                outputBox.classList.add("hidden");
+                this.textContent = "Expand Output";
+            }
+        });
+
     </script>
 
 </body>
