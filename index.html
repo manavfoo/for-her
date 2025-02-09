@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Text Display</title>
 
-    <!-- Add the CSS to load the local font -->
     <style>
         @font-face {
             font-family: "OpenDyslexic";
@@ -13,15 +12,6 @@
                  url("./fonts/OpenDyslexic-Regular.woff") format("woff"),
                  url("./fonts/OpenDyslexic-Regular.ttf") format("truetype");
             font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: "OpenDyslexic";
-            src: url("./fonts/OpenDyslexic-Bold.woff2") format("woff2"),
-                 url("./fonts/OpenDyslexic-Bold.woff") format("woff"),
-                 url("./fonts/OpenDyslexic-Bold.ttf") format("truetype");
-            font-weight: bold;
             font-style: normal;
         }
 
@@ -46,15 +36,17 @@
         }
 
         textarea {
-            width: 100%; /* Full width relative to #inputArea */
-            height: 50px;
+            width: 100%; /* Full width relative to the container */
+            height: 50px; /* Fixed height */
+            max-height: 200px; /* Optional: Limit the maximum height */
             padding: 10px;
             font-size: 16px;
             font-family: "OpenDyslexic", Arial, sans-serif;
             border: none;
             border-radius: 20px; /* Smoothly rounded corners */
-            resize: none;
-            overflow: hidden;
+            resize: none; /* Disable manual resizing */
+            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             background: linear-gradient(145deg, #3b4252, #434c5e); /* Subtle gradient */
             color: white; /* White text for readability */
             box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow */
