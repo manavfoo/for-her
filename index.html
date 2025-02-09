@@ -113,13 +113,13 @@
 
         function clearText() {
             const confirmation = confirm("Are you sure you want to clear the text?");
-             if (confirmation) {
+            if (confirmation) {
                 const textInput = document.getElementById("textInput"); // Select the textarea
                 const output = document.getElementById("output");       // Select the output div
 
-            textInput.value = "";                                   // Clear the textarea content
-            output.textContent = "Your text will appear here";      // Reset the output text
-             }
+                textInput.value = "";                                   // Clear the textarea content
+                output.textContent = "Your text will appear here";      // Reset the output text
+            }
         }
     </script>
 
